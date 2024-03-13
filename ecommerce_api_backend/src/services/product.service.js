@@ -1,16 +1,17 @@
+// const express = require("express");
 const Category = require("../models/category.model.js");
-const Product =require("../models/product.model.js");
+const Product = require("../models/product.model.js");
 async function createProduct(reqData){
-    let topLevel=await Category.findOne({name:reqData,topLevelCategory});
+    let topLevel=await Category.findOne({name:reqData.topLevelCategory});
 
     if(!topLevel){
         topLevel=new Category({
-            name:reqData.topLevel,
+            name:reqData.topLevelCategory,
             level:1
         })
     }
 
-    let secondLevel=await category.findOne({
+    let secondLevel=await Category.findOne({
         name:reqData.secondLevelCategory,
         parentCategory: topLevel._id,
     })
@@ -81,12 +82,12 @@ async function getAllProducts(reqQuery){
 
     pageSize=pageSize || 10;
 
-    let Query = Product.find().populate("category");
+    let query = Product.find().populate("category");
 
     if(category){
         const existCategory=await Category.findOne({name:category});
         if(existCategory){
-            Query=query.where("category").equals(existCategory._id);
+            query=query.where("category").equals(existCategory._id);
         }else{
             return {content:[],curentPage:1,totalPages:0}
         }
@@ -106,7 +107,7 @@ async function getAllProducts(reqQuery){
     }
 
     if(minPrice && maxPrice){
-        quer=query.where('discoundedPrice').gte(minPrice).lte(maxPrice);
+        query=query.where('discoundedPrice').gte(minPrice).lte(maxPrice);
     }
 
     if(minDiscount){
@@ -123,7 +124,7 @@ async function getAllProducts(reqQuery){
 
     if(sort){
         const sortDirection=sort==="price_hight"?-1:1;
-        query=query.sort({discoundedPrice:sortDirection})
+        query=query.sort({discoundedPrice:sortDirection});
     }
 
     const totalProducts=await Product.countDocuments(query);

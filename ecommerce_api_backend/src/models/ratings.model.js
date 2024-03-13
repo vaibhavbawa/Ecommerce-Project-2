@@ -17,7 +17,7 @@ const ratingSchema = new Schema({
         required:true,
     },
     createdAt:{
-        type:date,
+        type:Date,
         default:Date.now()
     },
 });

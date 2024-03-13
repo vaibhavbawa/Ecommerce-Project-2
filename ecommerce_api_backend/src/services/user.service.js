@@ -70,7 +70,7 @@ const getUserProfileByToken=async(token)=>{
         }
         return user;
     } catch (error) {
-        console.log("fdjfdf",error);
+        console.log("error",error);
         throw new Error(error.message)
     }
 }

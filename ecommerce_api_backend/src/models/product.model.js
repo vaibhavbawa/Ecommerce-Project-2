@@ -14,10 +14,12 @@ const productSchema = new mongoose.Schema({
         required:true,
     },
     discountedPrice:{
-        type: Number
+        type: Number,
+        default:0
     },
     discountedPersent:{
         type: Number,
+        default:0
     },
     quantity:{
         type:Number,

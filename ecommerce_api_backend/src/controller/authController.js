@@ -8,11 +8,9 @@ const register = async(req,res)=>{
     try {
         const user = await userService.createUser(req.body)
         const jwt = jwtProvider.generateToken(user._id);
-        console.log(jwt);
         await cartService.createCart(user);
         return res.status(200).send({jwt,message:"register success"});
     } catch (error) {
-        console.log(error);
         return res.status(500).send({error:error.message});
     }
 }
@@ -32,10 +30,9 @@ const login = async(req,res)=>{
         }
 
         const jwt = jwtProvider.generateToken(user._id);
-        console.log("jwt",jwt);
         return res.status(200).send({jwt,message:"login success"});
     } catch (error) {
-        console.log("error",error);
+
         return res.status(500).send({error:error.message});
         
     }

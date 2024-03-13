@@ -5,10 +5,10 @@ async function createOrder(user,shippAddress){
     let address;
 
     if(shippAddress._id){
-        let existAddress = await Address.findById(shippAddress._id);
+        let existAddress = await address.findById(shippAddress._id);
         address=existAddress;
     }else{
-        address = new Address(shippAddress);
+        address = new address(shippAddress);
         address.user=user;
         await address.save();
 

@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const SECRET_KEY="nfldhdkjfhdijfhdbfdhfdkjfdkjfdfidfhdjfdfidufhdkfjdhfidfudfdfu"
+const SECRET_KEY="nfldhdkjfhdijfhdbfdhfdkjfdkjfdfidfhdjfdfidufhdkfjdhfidfudfdfu";
 
 const generateToken=(userId)=>{
 
@@ -9,7 +9,9 @@ const generateToken=(userId)=>{
 }
 
 const getUserIdFromToken=(token)=>{
-    const decodedToken=jwt.verify(token,SECRET_KEY)
+    console.log(token)
+    const decodedToken = jwt.verify(token,SECRET_KEY)
+    console.log("decodedtoken",decodedToken);
     return decodedToken.userId;
 }
 
