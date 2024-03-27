@@ -1,5 +1,5 @@
 const OrderItem = require("../models/orderItems");
-const cartService = require("../services/cart.service");
+const CartService = require("../services/cart.service");
 
 async function createOrder(user,shippAddress){
     let address;
@@ -16,7 +16,7 @@ async function createOrder(user,shippAddress){
         await user.save();
     }
 
-    const cart = await cartService.findUserCart(user._id);
+    const cart = await CartService.findUserCart(user._id);
     const orderItems=[];
 
     for(const item of cart.cartItems){

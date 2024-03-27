@@ -4,8 +4,10 @@ const createOrder = async(req,res)=>{
     const user= await req.user;
     try {
         let createdOrder = await orderService.createOrder(user.req.body);
+        console.log("createOrder",createdOrder);
         return res.status(201).send(createdOrder);
     } catch (error) {
+        console.log("error_c",error);
         return res.status(500).send({error:error.message})
     }
 }

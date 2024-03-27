@@ -37,7 +37,7 @@ const findUserById = async(userId)=>{
         return user;
         
     } catch (error) {
-        
+        console.log("gfgfgfg",error);
         throw new Error(error.message)
     }
 }
@@ -62,7 +62,7 @@ const getUserProfileByToken=async(token)=>{
     try {
 
         const userId = jwtProvider.getUserIdFromToken(token);
-
+        console.log("userid",userId);
         const user = await findUserById(userId);
     
         if(!user){
